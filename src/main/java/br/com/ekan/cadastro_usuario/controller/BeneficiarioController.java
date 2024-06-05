@@ -80,24 +80,30 @@ public class BeneficiarioController {
     @Operation(summary = "Atualiza os dados dos usuários cadastrados", method = "PUT")
     @PutMapping("/beneficiarios/update/{beneficiarioID}")
     public ResponseEntity<Beneficiario> updateBeneficiario(@PathVariable Long beneficiarioID, @RequestBody Beneficiario updatedBeneficiario) {
+        try{
         Beneficiario savedBeneficiario = beneficiarioService.updateBeneficiario(beneficiarioID, updatedBeneficiario);
         return ResponseEntity.ok(savedBeneficiario);
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
     }
 
 
     @Operation(summary = "Deleta um beneficiário selecionado por ID", method = "DELETE")
     @DeleteMapping("/beneficiarios/delete/{beneficiarioID}")
     public ResponseEntity<Beneficiario> delete(@PathVariable long beneficiarioID){
-        beneficiarioService.delete(beneficiarioID);
-        return ResponseEntity.noContent().build();
+        try {
+            beneficiarioService.delete(beneficiarioID);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
     @Operation(summary = "Adiciona um novo usuário", method = "POST")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Beneficiário criado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
-            @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    @ApiResponse(responseCode = "201", description = "Beneficiário criado com sucesso")
     })
     @PostMapping("/beneficiarios/save")
     public ResponseEntity<Beneficiario> save(@Valid @RequestBody Beneficiario beneficiario) {

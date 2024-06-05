@@ -1,74 +1,80 @@
-Projeto Desenvolvido com Springboot, Springdata JPA e sistema de segurança com Spring security.
+# Projeto Desenvolvido com Spring Boot, Spring Data JPA e Spring Security
 
-Nesse projeto foi usado os conceitos padrões de arquitetura e desenvolvimento  de um sistema monolítico
-(API única). Os recursos utilizados para o desenvolvimento foram Springboot, SpringData JPA e SpringSecurity, para o banco
-de dados, foi utilizado o Postgres, outro recurso adicionado foi o lombook pra diminuir um tanto a verbosidade das classes modelo.
+Este projeto foi desenvolvido seguindo os conceitos padrões de arquitetura e desenvolvimento de um sistema monolítico (API única). Os recursos utilizados para o desenvolvimento foram Spring Boot, Spring Data JPA e Spring Security. Para o banco de dados, foi utilizado o PostgreSQL. Outro recurso adicionado foi o Lombok para diminuir a verbosidade das classes modelo.
 
+## Configuração e Execução
 
-Para rodar a aplicação será necessário que tenha um banco de dados instalado em sua máquina, o postgres seria o recomendado para o projeto em questão,
-com a ressalva que antes de mais nada será necessário criar o schema com o nome **ekan_clube_db**;  ao rodar a aplicação, o SpringData JPA irá automaticamente construir as tabelas necessárias para o funcionamento.
+Para rodar a aplicação, é necessário ter um banco de dados PostgreSQL instalado na máquina. Antes de iniciar a aplicação, crie um schema com o nome **ekan_clube_db**. Ao iniciar a aplicação, o Spring Data JPA irá automaticamente construir as tabelas necessárias para o funcionamento.
 
-A aplicação consiste em um CRUD, onde podemos
-1 - listar todos os beneficiários cadastrados 
-2 - listar um beneficiário específico (beneficiário cadastrado por ID)
-3 - listar os documentos de um usuário cadastrado (selecionado por ID de usuário)
-4 - Alterar os dados tanto pessoais como de documentos do usuário
-5 - Criar um novo usuário
-6 - Deletar um usuário já cadastrado.
+## Funcionalidades
 
-link da documentação dos endpoints: http://localhost:8080/swagger-ui/index.html#/
+A aplicação consiste em um CRUD, onde podemos:
 
-Conforme mencionado acima, utilizamos o SpringSecurity, por meio desse, se faz necessário o uso de autenticação e autorização para fazer
-requisição na api. Os meios de acesso são:
+1. Listar todos os beneficiários cadastrados.
+2. Listar um beneficiário específico (por ID).
+3. Listar os documentos de um usuário cadastrado (selecionado por ID de usuário).
+4. Alterar os dados pessoais e de documentos do usuário.
+5. Criar um novo usuário.
+6. Deletar um usuário já cadastrado.
 
-Ao utilizar o postman acesse a URL: http://localhost:8080/auth/register
+## Documentação dos Endpoints
 
-O acesso de registro de usuário é totalmente livre de restrição, você poderá criar um usuário com o seguinte JSON
+Acesse a documentação dos endpoints em [Swagger UI](http://localhost:8080/swagger-ui/index.html#/).
 
--- --------------------------
-{
-"login": "Pedro Silva",
-"password": "12345",
-"role": "USER"
-}
--- -------------------------
-ou 
--- -------------------------
-{
-"login": "Ekan Club",
-"password": "12345",
-"role": "ADMIN"
-}
--- ------------------------
+## Autenticação e Autorização
+A aplicação utiliza Spring Security para autenticação e autorização de usuários. Os meios de acesso são:
+
+- Para registrar um novo usuário, acesse a URL: http://localhost:8080/auth/register. O acesso ao registro de usuário é livre de restrição. Você pode criar um usuário com o seguinte JSON:
+  ```json
+  {
+    "login": "Pedro Silva",
+    "password": "12345",
+    "role": "USER"
+  }
+  ```
+  ou 
+```json
+    {
+    "login": "ekan-club",
+    "password": "12345",
+    "role": "ADMIN"
+    }
+  ```
+
  Posteriormente poderá fazer o login com um dos  Json de exemplo acima através da seguinte URL : http://localhost:8080/auth/login
  
 Após o Login, você terá o retorno de um Bearer Token onde poderá fazer a requisição de todos os usuários através da URL: http://localhost:8080/ekan-club/beneficiarios
 
 Apenas administradores podem inserir um novo usuário na base de dados, para fazer o teste você poderá utilizar o seguinte JSON (MODELO)
 
+```json
 {
-"nome": "João da Silva",
-"telefone": "11987654321",
-"dataNascimento": "1990-05-15",
-"dataInclusao": "2024-06-05",
-"dataAtualizacao": "2024-06-05",
-"documentos": [
-{
-"tipoDocumento": "RG",
-"descricao": "Registro Geral",
-"dataInclusao": "2024-06-05",
-"dataAtualizacao": "2024-06-05"
-},
-{
-"tipoDocumento": "CPF",
-"descricao": "Cadastro de Pessoas Físicas",
-"dataInclusao": "2024-06-05",
-"dataAtualizacao": "2024-06-05"
+  "nome": "João da Silva",
+  "telefone": "11987654321",
+  "dataNascimento": "1990-05-15",
+  "dataInclusao": "2024-06-05",
+  "dataAtualizacao": "2024-06-05",
+  "documentos": [
+    {
+      "tipoDocumento": "RG",
+      "descricao": "Registro Geral",
+      "dataInclusao": "2024-06-05",
+      "dataAtualizacao": "2024-06-05"
+    },
+    {
+      "tipoDocumento": "CPF",
+      "descricao": "Cadastro de Pessoas Físicas",
+      "dataInclusao": "2024-06-05",
+      "dataAtualizacao": "2024-06-05"
+    }
+  ]
 }
-]
-}
+```
+
 
 Para Fazer um update, segue o exemplo:
+
+```json
 {
 "nome": "João da Silva Atualizado",
 "telefone": "11987654322",
@@ -92,7 +98,7 @@ Para Fazer um update, segue o exemplo:
 }
 ]
 }
-
+```
 
 Salvar, Deletar apenas administradores podem fazer tal ação, as demais requisições são de livre acesso para os demais usuários.
 
