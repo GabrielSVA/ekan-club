@@ -17,6 +17,8 @@ A aplicação consiste em um CRUD, onde podemos:
 5. Criar um novo usuário.
 6. Deletar um usuário já cadastrado.
 
+Atenção: Utilize o postman para um teste mais assertivo da aplicação.
+
 ## Documentação dos Endpoints
 
 Acesse a documentação dos endpoints em [Swagger UI](http://localhost:8080/swagger-ui/index.html#/).
