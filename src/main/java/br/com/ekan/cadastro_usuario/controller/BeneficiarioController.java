@@ -1,7 +1,6 @@
 package br.com.ekan.cadastro_usuario.controller;
 
 
-import br.com.ekan.cadastro_usuario.dto.BeneficiarioDTO;
 import br.com.ekan.cadastro_usuario.model.Beneficiario;
 import br.com.ekan.cadastro_usuario.model.Documento;
 import br.com.ekan.cadastro_usuario.service.BeneficiarioService;
@@ -23,7 +22,7 @@ public class BeneficiarioController {
     private BeneficiarioService beneficiarioService;
 
     @Operation(summary = "Traz todos os usuários cadastrados no banco", method = "GET")
-    @GetMapping("/beneficiarios/salvos")
+    @GetMapping("/beneficiarios")
     private List<Beneficiario> beneficiarios() {
         return beneficiarioService.findAll();
     }
@@ -51,7 +50,7 @@ public class BeneficiarioController {
 
     @Operation(summary = "Deleta um beneficiário selecionado por ID", method = "DELETE")
     @DeleteMapping("/beneficiarios/{beneficiarioID}")
-    public ResponseEntity<BeneficiarioDTO> delete(@PathVariable long beneficiarioID){
+    public ResponseEntity<Beneficiario> delete(@PathVariable long beneficiarioID){
         beneficiarioService.delete(beneficiarioID);
         return ResponseEntity.noContent().build();
     }

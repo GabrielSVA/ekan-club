@@ -10,10 +10,10 @@ import java.util.List;
 public class DocumentoService {
 
 
-    private DocumentoRepository documentoRepository;
-
-    // @Transactional(rollbackFor = Exception.class)
-    public List<Documento> save(List<Documento> documentos) {
-        return documentoRepository.saveAll(documentos);
-    }
+//    private DocumentoRepository documentoRepository;
+//
+//    // @Transactional(rollbackFor = Exception.class)
+//    public List<Documento> save(List<Documento> documentos) {
+//        return documentoRepository.saveAll(documentos);
+//    }
 }
