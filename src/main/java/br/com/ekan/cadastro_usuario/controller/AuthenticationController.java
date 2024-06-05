@@ -7,7 +7,6 @@ import br.com.ekan.cadastro_usuario.infra.TokenService;
 import br.com.ekan.cadastro_usuario.model.Gerente;
 import br.com.ekan.cadastro_usuario.repository.GerenteRepository;
 import jakarta.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

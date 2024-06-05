@@ -2,9 +2,7 @@ package br.com.ekan.cadastro_usuario.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

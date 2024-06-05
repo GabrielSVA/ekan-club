@@ -2,10 +2,15 @@ package br.com.ekan.cadastro_usuario.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "documentos")
 public class Documento {
@@ -33,43 +38,4 @@ public class Documento {
         this.beneficiario = beneficiario;
     }
 
-    public LocalDate getDataAtualizacao() {
-        return dataAtualizacao;
-    }
-
-    public void setDataAtualizacao(LocalDate dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
-    }
-
-    public LocalDate getDataInclusao() {
-        return dataInclusao;
-    }
-
-    public void setDataInclusao(LocalDate dataInclusao) {
-        this.dataInclusao = dataInclusao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
